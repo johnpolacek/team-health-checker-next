@@ -719,6 +719,49 @@ To deploy our app, we will use [Now](https://zeit.co/now) by [Zeit](https://zeit
 
 First, we will need to sign up for an account and install the CLI. Refer to the [docs](https://zeit.co/docs) for more info and installation instructions.
 
+To verify you have installed and are authorized to deploy, from your CLI run:
+
+~~~~
+$ now whoami
+~~~~
+
+It should output the username you set up on now. 
+
+Next, we need to target our deployment for a serverless environment.
+
+*next.config.js*
+
+~~~~
+module.exports = {
+  target: 'serverless'
+}
+~~~~
+
+Then we create a now config file to point at our next config file and use the next build setup.
+
+*now.json*
+
+~~~~
+{
+  "version": 2,
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }]
+}
+~~~~
+
+At the time of this writing, we have a dependency on next.js version 8 canary. It is likely by the time you read this, 8.0.0 will have been released, and no changes to `package.json` will be necessary. If not, update the version of next: 
+
+*package.json*
+
+~~~~
+...
+"next": "canary",
+...
+~~~~
+
+
+
+
+
 
 
 
